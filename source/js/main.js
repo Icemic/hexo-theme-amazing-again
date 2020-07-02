@@ -79,26 +79,26 @@ function loadMainJs($, moment, ClipboardJS, config) {
         const clipboard = config.article.highlight.clipboard;
         const fold = config.article.highlight.fold.trim();
 
-        $('figure.highlight').each(function () {
-            if ($(this).find('figcaption').length) {
-                $(this).find('figcaption').addClass('level is-mobile');
-                $(this).find('figcaption').append('<div class="level-left">');
-                $(this).find('figcaption').append('<div class="level-right">');
-                $(this).find('figcaption div.level-left').append($(this).find('figcaption').find('span'));
-                $(this).find('figcaption div.level-right').append($(this).find('figcaption').find('a'));
-            } else {
-                if (clipboard || fold) {
-                    $(this).prepend('<figcaption class="level is-mobile"><div class="level-left"></div><div class="level-right"></div></figcaption>');
-                }
-            }
-        });
+        // $('figure.highlight').each(function () {
+        //     if ($(this).find('figcaption').length) {
+        //         $(this).find('figcaption').addClass('level is-mobile');
+        //         $(this).find('figcaption').append('<div class="level-left">');
+        //         $(this).find('figcaption').append('<div class="level-right">');
+        //         $(this).find('figcaption div.level-left').append($(this).find('figcaption').find('span'));
+        //         $(this).find('figcaption div.level-right').append($(this).find('figcaption').find('a'));
+        //     } else {
+        //         if (clipboard || fold) {
+        //             $(this).prepend('<figcaption class="level is-mobile"><div class="level-left"></div><div class="level-right"></div></figcaption>');
+        //         }
+        //     }
+        // });
 
         if (typeof ClipboardJS !== 'undefined' && clipboard) {
             $('figure.highlight').each(function () {
                 const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
                 const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
                 $(this).attr('id', id);
-                $(this).find('figcaption div.level-right').append(button);
+                $(this).append(button);
             });
             new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
         }

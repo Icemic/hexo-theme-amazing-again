@@ -3,12 +3,12 @@ bulma-stylus-root = "../../../../node_modules/bulma-stylus/stylus"
 /* ---------------------------------
  *   Override Bulma CSS Framework
  * --------------------------------- */
-$body-size ?= 14px
+$body-size ?= 15px
 $body-background-color ?= #f7f7f7
 
 //$family-sans-serif ?= Ubuntu, Roboto, "Open Sans", "Microsoft YaHei", sans-serif
-$family-code ?= "Source Code Pro", monospace, "Microsoft YaHei"
-$family-sans-serif ?= 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif
+$family-code ?= "Fira Code", "Source Code Pro", "Consolas", "Courier New", monospace
+$family-sans-serif ?= 'Monda', "PingFang SC", "Source Han Sans CN", "Noto Sans SC", "Microsoft YaHei", sans-serif
 //$family-sans-serif ?= 'Itim', 'Monda', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 
 $primary ?= $blue
@@ -21,9 +21,9 @@ $custom-colors ?= {
 
 $gap ?= 64px
 $tablet ?= 769px
-$desktop ?= 1088px
-$widescreen ?= 1280px
-$fullhd ?= 1472px
+$desktop ?= 1200px
+$widescreen ?= 1280000px
+$fullhd ?= 1472000px
 
 $shadow ?= 0 4px 10px rgba(0, 0, 0, 0.05)
 
@@ -39,6 +39,8 @@ $card-shadow ?= $shadow, 0 0 1px rgba(0,0,0,0.1)
 $content-heading-weight ?= $weight-normal
 
 $article-size ?= 1.1rem
+
+$menu-label-font-size ?= 0.85rem
 
 // FIXME: https://github.com/groenroos/bulma-stylus/issues/11
 @import bulma-stylus-root + "/utilities/initial-variables"
@@ -142,13 +144,30 @@ $colors = merge($colors, $custom-colors)
     padding: 3rem 1.5rem;
 
 +mobile()
+    html
+        font-size: 14px
     .section
-        padding: 7rem 1.5rem;
+        padding: 5.6rem 0.6rem;
     .friend-card-item
         width: 100% !important;
     .content .gt-container .gt-comment-header {
         width: 100%;
     }
+    .card + .card
+        margin-top: 0.6rem !important;
+    .card-content
+        padding: 1.2rem;
+
+
+.heading
+  font-size: 12px !important
+
+.level-item .title, .level-item .subtitle {
+    margin-bottom: 6px;
+}
+
+.level-item.button .fab
+  font-size: 1.2rem !important
 
 .navbar-main
     box-shadow: $shadow
@@ -200,6 +219,7 @@ $colors = merge($colors, $custom-colors)
     .media + .media
         border: none
         margin-top: 0
+        padding-top: 0 !important
 
 .content
     h1
@@ -251,6 +271,7 @@ figure.highlight
     width: 100%
     position: relative
     margin: 1em 0 1em !important
+    border-radius: 4px;
     &.folded
         .highlight-body
             height: 0
@@ -280,7 +301,7 @@ figure.highlight
 
     figcaption,
     .gutter
-        background: rgba(200, 200, 200, 0.15)
+        background: rgba(255,255,255,0.04)
 
     figcaption
         margin: 0 !important
@@ -331,7 +352,19 @@ figure.highlight
         vertical-align: inherit
         min-width: inherit
         border-radius: inherit
-
+    .copy {
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        color: $grey;
+        display: none;
+        &:hover {
+            color: lightgray;
+        }
+    }
+    &:hover .copy {
+        display: block
+    }
 
 /* ---------------------------------
  *  Custom Element/Component styles
@@ -356,6 +389,7 @@ article
             margin-bottom: 0.5rem
         .article-more
             @extend .button.is-light
+            margin-bottom: 0 !important
         .content
             font-size: $article-size
             blockquote.pullquote
@@ -811,7 +845,7 @@ footer.footer
     word-break: break-all;
     margin: 1.5rem 0 1.5rem 0;
     padding: 1rem 1rem;
-    border-left: 3px solid #FF1700;
+    border-left: 3px solid #3273dc;
     background-color: #F9F9F9;
 }
 
@@ -862,6 +896,7 @@ content-h-color = #3273dca8
 
 .button.is-small {
     border-radius: 2px;
+    font-size: 0.85rem;
 }
 
 
@@ -1129,6 +1164,7 @@ a.navbar-item.is-active,
 
 
 .content {
+    margin-bottom: 0 !important;
     a {
         img {
             margin: auto;
@@ -1240,6 +1276,15 @@ hr {
 .font1_1 {
   font-size 1.1rem;
 }
+
+.tag:not(body) {
+  font-size: 0.85rem;
+}
+
+.is-size-7 {
+  font-size: 0.85rem !important;
+}
+  
 
 // ============self-talking  end
 
@@ -1688,7 +1733,9 @@ night-link = #3273dc
 .index-category-tag{
     margin-bottom: 1rem;
     .level-item{
-        display: unset;
+        display: flex
+        align-items: center
+        justify-content: flex-start
     }
     .button.is-small {
         border-radius: 2px;
