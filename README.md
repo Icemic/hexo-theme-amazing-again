@@ -1,3 +1,19 @@
+基于 [amazing](https://github.com/removeif/hexo-theme-amazing) 主题，由 Icemic 再次定制。
+
+定制内容：
+- 移除了页尾独立的版权信息，统一使用 Footer 字段
+- 删除了前作者 removeif 输出在控制台的博客地址
+- 修改 _config.yml 为我的博客信息
+- 增加了基于段落和字数规则的自动摘要生成功能
+- 样式调整，主要是宽度自适应和字号相关
+- 代码框风格调整，不显示折叠、保留一键复制到剪贴板功能
+- 默认评论数由 99+ 改为不显示
+
+
+以下为原主题的 readme 内容：
+
+---
+
 **预览图**
 + 首页1
 ![](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2020/20200208141757.png)
